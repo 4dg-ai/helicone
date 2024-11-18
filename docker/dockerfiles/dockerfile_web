@@ -16,6 +16,11 @@ RUN mv /app/web/yarn.lock.bak /app/web/yarn.lock
 
 RUN rm .env.* || true
 
-EXPOSE 3000
+# Add environment variable for port
+ENV PORT=3001
 
-CMD ["yarn", "build-and-start"]
+# Change expose port to 3001
+EXPOSE 3001
+
+# Modify the command to use the environment variable
+CMD ["sh", "-c", "yarn build && yarn start -p $PORT"]
